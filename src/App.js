@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component , Fragment} from 'react';
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import withLayout from './components/Layout';
+import lab1 from "./pages/lab1";
+import lab2 from "./pages/lab2";
+import lab3 from "./pages/lab3";
+import exam from "./pages/exam";
+
+import 'normalize.css';
+import './styles/index.scss';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <Fragment>
+                    <Route exact path="/" component={() => <Redirect to="/lab-1" />}/>
+                    <Route path="/lab-1" exact component={lab1}/>
+                    <Route path="/lab-2" component={lab2}/>
+                    <Route path="/lab-3" component={lab3}/>
+                    <Route path="/exam" component={exam}/>
+                </Fragment>
+            </Router>
+        )
+    }
 }
+
 
 export default App;
